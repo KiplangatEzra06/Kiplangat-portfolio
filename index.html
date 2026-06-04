@@ -1,0 +1,806 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portfolio of Kiplangat, a first-year Software Engineering student in Kenya building web apps, fintech projects, and real-world software." />
+  <title>Kiplangat â€” Software Engineer in Progress</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0e13;
+      --surface: #12161e;
+      --surface2: #1a1f2b;
+      --green: #00e5a0;
+      --green-dim: rgba(0, 229, 160, 0.12);
+      --amber: #f5a623;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: rgba(255, 255, 255, 0.07);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* â”€â”€ GRID NOISE OVERLAY â”€â”€ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 229, 160, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 160, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* â”€â”€ NAV â”€â”€ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(11, 14, 19, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--green);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* â”€â”€ SECTIONS â”€â”€ */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 120px 32px;
+    }
+
+    /* â”€â”€ HERO â”€â”€ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 140px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid var(--green);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(42px, 7vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.4s forwards;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.6s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.8s forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 3px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #0b0e13;
+    }
+
+    .btn-primary:hover {
+      background: #00ffb3;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.6s 1s forwards;
+    }
+
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--green);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* â”€â”€ SECTION HEADERS â”€â”€ */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .section-num {
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 0.1em;
+    }
+
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* â”€â”€ ABOUT â”€â”€ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+    }
+
+    .stack-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    .stack-box h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .skill-chip {
+      display: inline-block;
+      background: var(--green-dim);
+      color: var(--green);
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin: 4px;
+      border: 1px solid rgba(0, 229, 160, 0.2);
+      letter-spacing: 0.05em;
+    }
+
+    .learning-chip {
+      display: inline-block;
+      background: rgba(245, 166, 35, 0.1);
+      color: var(--amber);
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin: 4px;
+      border: 1px solid rgba(245, 166, 35, 0.2);
+    }
+
+    /* â”€â”€ PROJECTS â”€â”€ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0, 229, 160, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .project-status {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .status-live {
+      background: rgba(0, 229, 160, 0.1);
+      color: var(--green);
+      border: 1px solid rgba(0, 229, 160, 0.2);
+    }
+
+    .status-wip {
+      background: rgba(245, 166, 35, 0.1);
+      color: var(--amber);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+    }
+
+    .status-concept {
+      background: rgba(100, 116, 139, 0.15);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .project-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .project-card p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 10px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-links a {
+      font-size: 11px;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.2s;
+    }
+
+    .project-links a:hover {
+      opacity: 0.7;
+    }
+
+    /* â”€â”€ ROADMAP â”€â”€ */
+    .roadmap {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--green), transparent);
+    }
+
+    .roadmap-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .roadmap-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .roadmap-item.future::before {
+      background: transparent;
+      border: 1px solid var(--muted);
+      box-shadow: none;
+    }
+
+    .roadmap-year {
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .roadmap-item.future .roadmap-year {
+      color: var(--muted);
+    }
+
+    .roadmap-item h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .roadmap-item p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* â”€â”€ CONTACT â”€â”€ */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 64px 48px;
+      margin-top: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 229, 160, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-box h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 36px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* â”€â”€ FOOTER â”€â”€ */
+    footer {
+      text-align: center;
+      padding: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.08em;
+    }
+
+    footer span {
+      color: var(--green);
+    }
+
+    /* â”€â”€ ANIMATIONS â”€â”€ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* â”€â”€ RESPONSIVE â”€â”€ */
+    @media (max-width: 640px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .contact-box {
+        padding: 40px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- â”€â”€ NAV â”€â”€ -->
+  <nav>
+    <div class="nav-logo">KIP.DEV</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#roadmap">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <main>
+
+    <!-- â”€â”€ HERO â”€â”€ -->
+    <section id="hero">
+      <div class="hero-tag">Year 1 Â· Software Engineering</div>
+      <h1>Building things.<br /><span>Learning fast.</span></h1>
+      <p class="hero-sub">
+        First-year Computer Science student based in Kenya. I write code, break things, fix them, and document the
+        process. Currently focused on web development and data structures.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">See my work</a>
+        <a href="https://github.com/KiplangatEzra06" target="_blank" rel="noopener noreferrer"
+          class="btn btn-outline">GitHub â†—</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-num">3</span>
+          <span class="stat-label">Projects shipped</span>
+        </div>
+        <div>
+          <span class="stat-num">2</span>
+          <span class="stat-label">Languages learned</span>
+        </div>
+        <div>
+          <span class="stat-num">1</span>
+          <span class="stat-label">Year in</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- â”€â”€ ABOUT â”€â”€ -->
+    <section id="about">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a <strong>first-year Software Engineering student</strong> at Multimedia University of Kenya, building
+            a foundation in algorithms, web development, and software design principles.</p>
+          <p>I started this portfolio because I believe a degree alone isn't proof of skill â€” <strong>shipped work
+              is.</strong> Every project here represents something I built, broke, and rebuilt until it worked.</p>
+          <p>Outside of coursework, I'm exploring Kenya's tech ecosystem: attending hackathons, experimenting with local
+            fintech use cases like M-Pesa integrations, and contributing to open-source projects.</p>
+          <p>Currently reading: <strong>Clean Code</strong> by Robert Martin. Currently building: see below.</p>
+        </div>
+        <div>
+          <div class="stack-box" style="margin-bottom:16px">
+            <h3>Current Stack</h3>
+            <span class="skill-chip">HTML / CSS</span>
+            <span class="skill-chip">JavaScript</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Git</span>
+            <span class="skill-chip">Linux CLI</span>
+            <span class="skill-chip">SQL (basics)</span>
+          </div>
+          <div class="stack-box">
+            <h3>Currently Learning</h3>
+            <span class="learning-chip">React</span>
+            <span class="learning-chip">Node.js</span>
+            <span class="learning-chip">Data Structures</span>
+            <span class="learning-chip">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- â”€â”€ PROJECTS â”€â”€ -->
+    <section id="projects">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div><span class="project-status status-live">Live</span></div>
+          <h3>MarginThrive Capital</h3>
+          <p>Freelance client project. A full fintech lending website with a loan application system, data privacy
+            compliance documentation under the Kenya Data Protection Act 2019, and a styled PDF privacy notice. Deployed
+            on Render.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
+              class="tag">Render</span><span class="tag">KDPA 2019</span>
+          </div>
+          <div class="project-links">
+            <a href="https://marginthrive.onrender.com" target="_blank" rel="noopener noreferrer">Live Site â†’</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div><span class="project-status status-live">Live</span></div>
+          <h3>Lilpoet Ezra</h3>
+          <p>A quiet platform for poets to share their work. Features user authentication, poem submission by category,
+            a searchable archive, and a tone built around Nairobi nights and spoken word culture.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
+              class="tag">GitHub Pages</span>
+          </div>
+          <div class="project-links">
+            <a href="https://kiplangatezra06.github.io/lilpoet-ezra-site/" target="_blank"
+              rel="noopener noreferrer">Live Site â†’</a>
+            <a href="https://github.com/kiplangatezra06/lilpoet-ezra-site" target="_blank"
+              rel="noopener noreferrer">GitHub â†’</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div><span class="project-status status-concept">Coming Soon</span></div>
+          <h3>Your Next Project</h3>
+          <p>Currently ideating. Check back soon â€” or reach out if you have a problem worth building for.</p>
+          <div class="project-tags">
+            <span class="tag">TBD</span>
+          </div>
+          <div class="project-links">
+            <a href="#contact">Get in touch â†’</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- â”€â”€ JOURNEY / ROADMAP â”€â”€ -->
+    <section id="roadmap">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>The Journey</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="roadmap">
+
+        <div class="roadmap-item">
+          <div class="roadmap-year">Aug 2025 â€” Year 1 Sem 1</div>
+          <h3>First lines of code</h3>
+          <p>Joined Multimedia University of Kenya. Started with Python fundamentals and Intro to Programming. Built
+            first CLI projects and learned version control with Git. Pushed first commit to GitHub.</p>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-year">2026 â€” Year 1 Sem 2 (Now)</div>
+          <h3>Web Development & Real Projects</h3>
+          <p>Building real things. Delivered MarginThrive Capital as a freelance client project, shipped Lilpoet Ezra as
+            a personal platform. This portfolio is my first production-grade personal site.</p>
+        </div>
+
+        <div class="roadmap-item future">
+          <div class="roadmap-year">2026â€“2027 â€” Year 2</div>
+          <h3>APIs, Databases & First Internship</h3>
+          <p>Goal: land a first tech internship or freelance client. Plans to apply to Andela, local startups, and
+            Safaricom's internship programme. Build 2 full-stack projects.</p>
+        </div>
+
+        <div class="roadmap-item future">
+          <div class="roadmap-year">2028â€“2029</div>
+          <h3>Specialize & Enter the Market</h3>
+          <p>Choose a specialization (likely fintech or backend systems). Contribute meaningfully to open source. Have a
+            job offer before graduation.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- â”€â”€ CONTACT â”€â”€ -->
+    <section id="contact">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Get in Touch</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-box">
+        <h3>Open to opportunities.</h3>
+        <p>Internships, freelance gigs, collaborations, or just a chat about tech in Kenya â€” reach out.</p>
+        <div class="contact-links">
+          <a href="mailto:tonuiezra06@gmail.com" class="btn btn-primary">Send Email</a>
+          <a href="https://www.linkedin.com/in/kiplangat-ezra-8417b7359" target="_blank" rel="noopener noreferrer"
+            class="btn btn-outline">LinkedIn
+            â†—</a>
+          <a href="https://github.com/KiplangatEzra06" target="_blank" rel="noopener noreferrer"
+            class="btn btn-outline">GitHub â†—</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    Built by <span>Kiplangat</span> Â· Year 1 Â· Multimedia University of Kenya &mdash; 2026
+  </footer>
+
+</body>
+
+</html>
