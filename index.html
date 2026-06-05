@@ -7,6 +7,11 @@
   <meta name="description"
     content="Portfolio of Kiplangat, a first-year Software Engineering student in Kenya building web apps, fintech projects, and real-world software." />
   <title>Kiplangat — Software Engineer in Progress</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Kiplangat — Software Engineer in Progress">
+  <meta property="og:description" content="I build web apps and fintech projects — available for internships and freelance.">
+  <meta property="og:image" content="og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -325,6 +330,15 @@
       overflow: hidden;
     }
 
+    .project-thumb {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
     .project-card::after {
       content: '';
       position: absolute;
@@ -629,7 +643,7 @@
           <span class="stat-label">Projects shipped</span>
         </div>
         <div>
-          <span class="stat-num">2</span>
+          <span class="stat-num">3</span>
           <span class="stat-label">Languages learned</span>
         </div>
         <div>
@@ -688,13 +702,14 @@
 
         <div class="project-card">
           <div><span class="project-status status-live">Live</span></div>
+          <img src="marginthrive-screenshot.svg" alt="MarginThrive screenshot" class="project-thumb">
           <h3>MarginThrive Capital</h3>
-          <p>Freelance client project. A full fintech lending website with a loan application system, data privacy
-            compliance documentation under the Kenya Data Protection Act 2019, and a styled PDF privacy notice. Deployed
+          <p>Freelance fintech lending platform: built applicant onboarding, loan application workflow, and an admin
+            dashboard for approvals. Produced KDPA 2019 privacy documentation and a downloadable privacy notice. Deployed
             on Render.</p>
           <div class="project-tags">
             <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
-              class="tag">Render</span><span class="tag">KDPA 2019</span>
+              class="tag">Render</span><span class="tag">KDPA 2019</span><span class="tag">Private repo</span>
           </div>
           <div class="project-links">
             <a href="https://marginthrive.onrender.com" target="_blank" rel="noopener noreferrer">Live Site →</a>
@@ -703,9 +718,10 @@
 
         <div class="project-card">
           <div><span class="project-status status-live">Live</span></div>
+          <img src="lilpoet-screenshot.svg" alt="Lilpoet Ezra screenshot" class="project-thumb">
           <h3>Lilpoet Ezra</h3>
-          <p>A quiet platform for poets to share their work. Features user authentication, poem submission by category,
-            a searchable archive, and a tone built around Nairobi nights and spoken word culture.</p>
+          <p>Personal publishing platform for poets: implemented user auth, poem submission with categories, and a
+            searchable archive. Designed for short-form publishing and community discovery. Hosted on GitHub Pages.</p>
           <div class="project-tags">
             <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
               class="tag">GitHub Pages</span>
@@ -784,14 +800,15 @@
       <div class="contact-box">
         <h3>Open to opportunities.</h3>
         <p>Internships, freelance gigs, collaborations, or just a chat about tech in Kenya — reach out.</p>
-        <div class="contact-links">
-          <a href="mailto:tonuiezra06@gmail.com" class="btn btn-primary">Send Email</a>
-          <a href="https://www.linkedin.com/in/kiplangat-ezra-8417b7359" target="_blank" rel="noopener noreferrer"
-            class="btn btn-outline">LinkedIn
-            ↗</a>
-          <a href="https://github.com/kiplangatezra06" target="_blank" rel="noopener noreferrer"
-            class="btn btn-outline">GitHub ↗</a>
-        </div>
+          <div class="contact-links">
+            <a href="mailto:kiplangatezra@gmail.com" class="btn btn-primary">Send Email</a>
+            <a href="resume.pdf" download class="btn btn-outline">Download CV</a>
+            <a href="https://www.linkedin.com/in/kiplangat-ezra-8417b7359" target="_blank" rel="noopener noreferrer"
+              class="btn btn-outline">LinkedIn
+              ↗</a>
+            <a href="https://github.com/kiplangatezra06" target="_blank" rel="noopener noreferrer"
+              class="btn btn-outline">GitHub ↗</a>
+          </div>
       </div>
     </section>
   </main>
